@@ -1,0 +1,11 @@
+*~
+*.pyc
+*.sqlite
+prod
+static
+assets
+node_modules
+bower_components
+.idea
+*.sqlite3
+

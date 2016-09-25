@@ -1,0 +1,11 @@
+Django==1.9
+djangorestframework>=3.3
+pillow
+uwsgi
+
+
+# dev
+django-debug-toolbar
+Werkzeug
+django-extensions
+django-cors-headers
