@@ -1,0 +1,177 @@
+<div class="container-top" (window:scroll)="onScroll($event)">
+  <div class="row">
+
+    <div class="col-xs-6">
+      <div class="catalog-top-inner">
+        <md-input #search placeholder="Поиск" (keyup)="searchItems(search.value)"></md-input>
+      </div>
+    </div>
+
+    <div class="col-xs-6">
+      <div class="catalog-top-inner text-right">
+        <button md-mini-fab color="primary" (click)="toggleForm()" [disableRipple]="true"> 
+          <md-icon class="md-24">add</md-icon>
+        </button>
+        <button md-mini-fab color="accent" (click)="toggleTextarea()" [disableRipple]="true"> 
+          <md-icon class="md-24">code</md-icon>
+        </button>
+        <button md-mini-fab color="warn" (click)="onItemsDeleted()" [disabled]="basket" [disableRipple]="true"> 
+          <md-icon class="md-24">delete</md-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+
+
+  <!--  Textarea   -->
+
+
+  <div class="wrapper-detail" [@detail]="togglerTextarea">
+    <!--<md-toolbar color="primary">
+      <span>JSON</span>
+      <span class="fill-remaining-space"></span>
+      <span>menu</span>
+    </md-toolbar>-->
+    <md-card class="md-card-darck">
+      <div class="textarea-block">
+        <textarea #json id="jsonSave" class="jsonSave"> {{ itemsString }} </textarea>
+      </div>
+      <div class="textarea-block textarea-button">
+
+        <form name="Form" #fileForm="ngForm" novalidate="novalidate">
+          <md-input #filename placeholder="имя файла" name="filename" [(ngModel)]="fileName" pattern="[a-zA-Z0-9]+([a-zA-Z\_0-9\.-]*)" required>
+            <span md-prefix>&nbsp;</span>
+          </md-input>
+          <button md-raised-button color="primary" (click)="download(filename.value)" [disabled]="!fileForm.form.valid"> Записать в файл </button>
+        </form>
+
+        <div class="fileform">
+          <div id="fileFormLabel"></div>
+          <div class="selectbutton">Открыть файл</div>
+          <input #upload type="file" name="upload" id="upload" (change)="getName(upload.value); getFileInner()" />
+        </div>
+
+        <div><br><br>
+          <button md-raised-button class="textarea-button" color="primary" (click)="onJsonSaved(json.value)">Сохранить изменения</button>
+        </div>
+
+      </div>
+      <div class="row"></div>
+    </md-card>
+
+  </div>
+
+
+  <!--   Head    -->
+
+
+  <div class="table" onmousedown="return false" onselectstart="return false">
+    <div #tableHead class="table-head">
+      <div class="tr-head">
+        <div class="th first-last-column"><input type="checkbox" (change)="toggleCheck()"></div>
+
+        <div #th class="th sort" *ngFor="let head of listHead; let i=index" [class.hide]="cols['col'+i] === false" [style.width.%]="head.width" (click)='sortedListItems(head.name, th)'>
+          <div class="delimiter"></div>
+          <div class="th-inner">{{head.title}}</div>
+        </div>
+
+        <div class="th first-last-column" (click)="toggleSettings()">
+          <md-icon svgSrc="static/svg/more.svg" class="sd-toolbar-icon">code</md-icon>
+        </div>
+      </div>
+    </div>
+
+    <div #boxHead class="box-head"></div>
+
+
+    <!--  Table of settings  -->
+
+
+    <div class="wrapper-detail" [@detail]="togglerSetting">
+      <table class="detail" onmousedown="return false" onselectstart="return false">
+        <thead>
+          <tr>
+            <th colspan="3">Ширина колонки</th>
+            <th>Отображение колонки</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let head of listHead; let i=index">
+            <td (click)="subtractWidth(i)"><i class="material-icons">navigate_before</i></td>
+            <td> {{ head.width.toFixed() }} </td>
+            <td (click)="addWidth(i)"><i class="material-icons">navigate_next</i> </td>
+            <td>
+              <md-slide-toggle [checked]="cols['col'+i]" (change)="toggleCol(i)">{{head.title}}</md-slide-toggle>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+
+
+    <!--  list  -->
+
+
+    <div class="tbody">
+      <div #row class="tr" *ngFor="let item of paginatorItems; let i=index" (click)='selectRow(row)' [class.selected]="row===selectedRow">
+        <div class="td first-last-column">
+          <input #tdChecked type="checkbox" value="{{item.id}}" [checked]="toggleChecked" (change)="basket=false">
+        </div>
+        <div class="td col0" [class.hide]="cols.col0 === false" [style.width.%]="listHead[0].width">{{item.id}}</div>s
+        <div class="td col1" [class.hide]="cols.col1 === false" [style.width.%]="listHead[1].width">{{item.number}}</div>
+        <div class="td col2" [class.hide]="cols.col2=== false" [style.width.%]="listHead[2].width">{{item.manufacturer}}</div>
+        <div class="td col3" [class.hide]="cols.col3 === false" [style.width.%]="listHead[3].width">
+          <a (click)="toggleForm(); beginEditItem(item)">{{item.title}}</a>
+        </div>
+        <div class="td col4" [class.hide]="cols.col4 === false" [style.width.%]="listHead[4].width" [style.text-align]="'right'">{{item.presence}}</div>
+        <div class="td col5" [class.hide]="cols.col5 === false" [style.width.%]="listHead[5].width">{{item.unit}}</div>
+        <div class="td col6" [class.hide]="cols.col6 === false" [style.width.%]="listHead[6].width">{{item.price}}</div>
+
+        <div class="td first-last-column" (click)="toggleExtra(i)">
+          <i class="material-icons">keyboard_arrow_down</i>
+        </div>
+
+        <div class="wrapper-detail" [@detail]="togglerExtra[i]">
+          <md-card class="md-card-light">
+
+            <!--   extra  -->
+
+            <div class="tr extra">
+              <div [style.color]="'#009688'"><b> Доп. информация: </b></div>
+              <!--   кнопка настройки item
+              <div class="text-right">
+                <button md-mini-fab color="accent" (click)="toggleForm(); beginEditItem(item)" [disableRipple]="true"> 
+                 <md-icon class="md-24">edit</md-icon>
+              </button>
+              </div>-->
+              <div [class.hide]="cols.col0 !== false"> {{ listHead[0].title }} :<b> {{ item.id }} </b></div>
+              <div [class.hide]="cols.col1 !== false"> {{ listHead[1].title }} :<b> {{ item.number }} </b></div>
+              <div [class.hide]="cols.col2 !== false"> {{ listHead[2].title }} :<b> {{ item.manufacturer }} </b></div>
+              <div> {{ listHead[3].title }} :<b><a (click)="toggleForm(); beginEditItem(item)"> {{ item.title }}</a> </b></div>
+              <div [class.hide]="cols.col4 !== false"> {{ listHead[4].title }} :<b> {{ item.presence }} </b></div>
+              <div [class.hide]="cols.col5 !== false"> {{ listHead[5].title }} :<b> {{ item.unit }} </b></div>
+              <div [class.hide]="cols.col6 !== false"> {{ listHead[6].title }} :<b> {{ item.price }} </b></div>
+              <div> Фото :<b> Фото будет ТАМ  ---> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     <a>\(oO)/</a> </b></div>
+            </div>
+          </md-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <sd-paginator *ngIf="newItems" [newItems]="newItems" [paginatorUpdated]="paginatorUpdated" (updatePag)="updatePag($event)"></sd-paginator>
+
+
+  <sd-form *ngIf="formVisible" [item]="item" (added)="onItemAdded($event)" (canceled)="toggleForm()" (edited)="onItemEdited($event)"></sd-form>
+
+
+</div>
+<br>
+<br>
+<!--<router-outlet></router-outlet>-->

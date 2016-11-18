@@ -1,0 +1,49 @@
+<div *ngIf="paginatorLength > 0">
+  <!--<span *ngIf="items">Показано {{Math.min(paginator.count,items.length)}} записей из {{items.length}}</span>-->
+
+  <div class="row">
+
+    <div class="col-xs-8">
+      <div class="paginator-inner">
+        <span (click)="page=1; updatePaginator()"> 
+          <i class="material-icons" >first_page</i>
+        </span>
+        <span (click)="page=page-1 || 1; updatePaginator()">
+          <i class="material-icons" >navigate_before</i>
+        </span>
+
+        <div #elPage class="lineNumber" *ngFor="let p of listPages"
+           (click)="page=p; updatePaginator(); selectPage(elPage)"
+           [class.selected]="elPage===selectedPage">
+          <span class="page"> {{ p }} </span>
+        </div>
+
+        <span (click)="page=Math.min(page+1,pages); updatePaginator()"> 
+          <i class="material-icons" >navigate_next</i>
+        </span>
+        <span (click)="page=pages; updatePaginator()">
+          <i class="material-icons">last_page</i>
+        </span>
+      </div>
+    </div>
+
+    <div class="col-xs-4">
+      <div class="text-right">
+        <span>строк: </span>
+        <md-button-toggle-group [(ngModel)]="count"
+           (change)="updatePaginator(); ngOnChanges()">
+          <md-button-toggle value="5">5</md-button-toggle>
+          <md-button-toggle value="10">10</md-button-toggle>
+          <md-button-toggle value="100">30</md-button-toggle>
+        </md-button-toggle-group>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div *ngIf="paginatorLength === 0"> 
+  <br>
+  <div class="text-center">Нет совпадений по запросу.</div>
+  <br>
+</div>

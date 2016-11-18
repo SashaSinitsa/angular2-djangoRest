@@ -1,0 +1,82 @@
+<div class="wrapper">
+  <md-card>
+    <!--<md-card-title> {{ title }} </md-card-title>-->
+    <!--<md-card-content>-->
+
+
+    <form name="Form" *ngIf="active" #newForm="ngForm" novalidate="novalidate">
+
+      <div class="string">
+        <div>
+          <div>
+            <md-input class="full-width" name="title" [(ngModel)]="model.title" #title="ngModel" required placeholder="Наименование запчасти:">
+              <span md-prefix>&nbsp;</span>
+            </md-input>
+          </div>
+          <div [hidden]="title.valid || title.pristine">
+            Name is required {{ title }}
+          </div>
+        </div>
+      </div>
+
+      <div class="string">
+        <div>
+          <md-input class="full-width" placeholder="Каталожный №:" name="number" [(ngModel)]="model.number" pattern="[0-9\-\.]*">
+            <span md-prefix>&nbsp;</span>
+          </md-input>
+        </div>
+      </div>
+
+      <div class="string">
+        <div>
+          <div class="select-top">
+            <select class="full-width" required name="manufacturer" [(ngModel)]="model.manufacturer">
+              <option value="" disabled selected >Производитель:</option>
+              <option *ngFor="let manufacturer of manufacturers"  [value]="manufacturer"> {{ manufacturer }} </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="string">
+        <div>
+          <div>
+            <md-input class="full-width" name="price" [(ngModel)]="model.price" placeholder="Цена:">
+              <span md-prefix>&nbsp;</span>
+              <span md-suffix>.00 грн</span>
+            </md-input>
+          </div>
+        </div>
+      </div>
+
+      <div class="string">
+        <div>
+          <div>
+            <table class="full-width">
+              <tr>
+                <td>
+                  <md-input class="full-width" name="presence" [(ngModel)]="model.presence" placeholder="Остаток на складе:">
+                    <span md-prefix>&nbsp;</span>
+                  </md-input>
+                </td>
+                <td><select class="full-width" name="unit" [(ngModel)]="model.unit">
+                    <!-- <option value="" disabled selected >Ед. измерения</option>-->
+                  <option>шт</option>
+                  <option *ngFor="let unit of units" [value]=" unit"> {{ unit }} </option>
+              </select></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="string">
+        <button md-raised-button color="primary" (click)="save()" [disabled]="!newForm.form.valid"> Сохранить </button>
+        <button md-raised-button (click)="cancel()">Отмена</button>
+      </div>
+
+    </form>
+    <!--</md-card-content>-->
+  </md-card>
+</div>

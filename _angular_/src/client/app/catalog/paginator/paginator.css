@@ -1,0 +1,55 @@
+
+span {
+  display: inline-block;
+  line-height: 100%;
+  height: 100%;
+  vertical-align: middle;
+}
+
+span:hover .material-icons {
+  cursor: pointer;
+  color: #9c27b0;
+}
+
+span::before,
+span::after {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.lineNumber {
+  display: inline-block;
+}
+
+.lineNumber span:hover {
+  font-weight: bold;
+}
+
+.material-icons {
+  color: #8c8c8c;
+  vertical-align: middle;
+}
+
+.paginator-inner {
+  height: 50px;
+  line-height: 50px;
+}
+
+.page {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  color: #9c27b0;
+  cursor: pointer;
+}
+
+.selected .page {
+  background-color: #f1f3f1;
+  border-radius: 20px;
+  font-weight: bold;
+}

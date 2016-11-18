@@ -1,0 +1,278 @@
+:host {
+  display: block;
+  padding: 0 16px;
+}
+
+a {
+  cursor: pointer;
+  color: #9c27b0;
+}
+
+table {
+  font-size: 14px;
+  border-collapse: collapse;
+}
+
+thead {
+  color: #009688;
+  border-bottom: 2px solid #009688;
+}
+
+th {
+  padding: 8px 2px 8px 16px;
+}
+
+td .material-icons {
+  cursor: pointer;
+  vertical-align: middle;
+  color: #8c8c8c;
+}
+
+tr td:first-child {
+  padding-left: 60px;
+}
+
+/*span {
+  display: inline-block;
+  line-height: 100%;
+  height: 100%;
+  vertical-align: middle;
+}*/
+
+md-slide-toggle {
+  margin: 8px 20px;
+}
+
+.container-top {
+  margin-top: 2px;
+  padding: 0 16px;
+}
+
+.catalog-top-inner {
+  height: 65px;
+}
+
+.catalog-top-inner::before {
+  display: inline-block;
+  height: 100%;
+  content: '';
+  vertical-align: middle;
+}
+
+.table {
+  font-size: .9em;
+  border-bottom: 1px solid #009688;
+}
+
+.table-head {
+  position: absolute;
+  right: 16px;
+  left: 16px;
+  height: 50px;
+}
+
+.table-head-abs {
+  position: absolute;
+}
+
+.table-head-fixed {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+}
+
+.tr-head {
+  font-size: 0;
+  height: 50px;
+  background-color: #009688;
+}
+
+.tr-head-set {
+  display: inline-block;
+}
+
+.box-head {
+  height: 50px;
+}
+
+.tr {
+  font-size: 0;
+}
+
+.th,
+.td {
+  font-size: 14px;
+  display: inline-block;
+  padding: 5px;
+}
+
+.th {
+  font-weight: normal;
+  line-height: 50px;
+  height: 50px;
+  padding-right: 0;
+  cursor: pointer;
+  text-align: left;
+  vertical-align: middle;
+  color: #f8f8f8;
+}
+
+.th md-icon {
+  margin-top: 5px;
+}
+
+.th-inner {
+  line-height: 1.25;
+  display: inline-block;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+}
+
+/*.fill-remaining-space {
+  flex: 1 1 auto;
+}*/
+
+.td {
+  line-height: 30px;
+  overflow: hidden;
+  height: 40px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.tbody {
+  border-top: 1px solid #009688;
+}
+
+.tbody>div:nth-child(even) {
+  background: #f1f3f1;
+}
+
+.tbody>div:hover {
+  background: #d5e9e5;
+}
+
+.table .tbody .selected {
+  background-color: #d5e9e5;
+}
+
+.first-last-column {
+  width: 4%;
+  padding: 5px 0;
+  cursor: pointer;
+  text-align: center;
+}
+
+.detail {
+  background-color: white;
+}
+
+.sort {
+  padding-left: 20px;
+  background-image: url(static/pic/sort-def.gif);
+  background-repeat: no-repeat;
+  background-position: center left;
+}
+
+.sort-asc {
+  background-image: url(static/pic/sort-asc.gif);
+}
+
+.sort-desc {
+  background-image: url(static/pic/sort-desc.gif);
+}
+
+.wrapper-detail {
+  overflow: hidden;
+}
+
+.extra {
+  font-size: 14px;
+  background-color: white;
+}
+
+.md-card-light {
+  /*-moz-box-shadow: inset 0 0 2px #2c7d75;
+  -webkit-box-shadow: inset 0 0 2px #2c7d75;
+  box-shadow: inset 0 0 2px #2c7d75;*/
+  border: 1px solid #8c8c8c;
+  border-bottom: 2px solid #009688;
+  border-top: 0;
+  background-color: #fff;
+}
+
+.md-card-darck {
+  margin: 2px 2px 0;
+  background-color: #f1f3f1;
+}
+
+.jsonSave {
+  width: 500px;
+  height: 200px;
+  border: 1px solid #009688;
+}
+
+.textarea-block {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.textarea-button {
+  float: right;
+}
+
+.fileform {
+  position: relative;
+  display: inline-block;
+  width: 331px;
+  height: 50px;
+  padding: 2px;
+  cursor: pointer;
+  text-align: left;
+  vertical-align: middle;
+  border-radius: 2px;
+  background-color: #f1f3f1;
+}
+
+.fileform .selectbutton {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 35px;
+  float: right;
+  overflow: hidden;
+  width: 143px;
+  height: 35px;
+  padding: 0 16px;
+  text-align: center;
+  vertical-align: middle;
+  color: #fff;
+  border-radius: 2px;
+  background-color: #009688;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.fileform #upload {
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  opacity: 0;
+  -moz-opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.fileform #fileFormLabel {
+  line-height: 33px;
+  float: left;
+  overflow: hidden;
+  width: 180px;
+  height: 32px;
+  padding: 2px;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.38);
+  background-color: #f1f3f1;
+}

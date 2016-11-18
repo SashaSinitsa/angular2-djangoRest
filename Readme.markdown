@@ -21,4 +21,4 @@ I have set up a **Django** project in virtual environment. I use PostgreSQL and 
 in my project. Also I`ve set up **Nginx** to handle client connections. You can see the 
 application page by clicking on the link http://sinitsa.myftp.org/catalog.
 
-[![ScreenShot](https://raw.github.com/GabLeRoux/WebMole/master/ressources/WebMole_Youtube_Video.png)](https://youtu.be/IhgoaZmByFg)
+[![ScreenShot](https://raw.github.com/GabLeRoux/WebMole/master/ressources/WebMole_Youtube_Video.png)](https://youtu.be/gyhYxRbOFMw)
